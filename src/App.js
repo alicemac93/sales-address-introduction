@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, useEffect} from "react";
+import AddressList from './components/AddressList';
+import Header from "./components/Header";
+import Search from "./components/Search";
+import addressData from "./data.json";
 
 function App() {
+ 
+  const [data, setData] = useState(addressData.data)
+  const [activeAddress, setActiveAddress] = useState({street: data[0].street, house: ""})
+
+  /*
+  useEffect(() => {
+  const getData = async() => {
+    try {
+        const response = await fetch("https://introduction-api.do.saleschamp.io/introduction-api/items/address")
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            setData(jsonResponse.data) 
+        }
+    } catch (error) {console.log(error)
+    }
+  }; getData();
+}, []);
+*/
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header
+      activeAddress={activeAddress} />
+      <Search />
+      <AddressList 
+        activeAddress={activeAddress}
+        setActiveAddress={setActiveAddress}
+        addresses={data}
+      />
     </div>
   );
 }
