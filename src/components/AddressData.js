@@ -3,32 +3,30 @@ import House from "./House"
 
 function AddressData(props) {
 
-    const showHouses = (active) => {
-        props.setActiveAddress({street: active})
-       /*if (props.id === id) {
-           if (props.isActive === true) {
-            props.setIsActive(false)
-           } else {props.setIsActive(true)}
-       }*/ 
-    }
+    const showHouses = (name) => {
+        props.setActiveAddress({location: name})
+    }   
 
     return (
-        <div>
-        <div 
-        onClick={() => showHouses(props.street)}>
-          <h2>{props.street}, {props.city}</h2>
+        <div className="list-group-item text-left">
+        <div onClick={() => showHouses(props.name)}>
+          <h2>{props.name}</h2>
         </div>
-        {(props.activeAddress.street === props.street) ?
+        {(props.activeAddress.location === props.name) ? 
           <ul> 
+          {props.addresses.map((house, i) =>  // View data not data to be modified
             <House
-            status={props.address.status}
-            number={props.number} />
-          </ul>
-        : null}
+            id={house.id}
+            key={i}
+            status={house.status}
+            number={house.number}
+            activeAddress={props.activeAddress}
+            setActiveAddress={props.setActiveAddress} />
+          )}
+          </ul> : null }
         </div>  
     );
 }
 
 export default AddressData;
 
-// display={(!props.isActive) && null}
