@@ -30,19 +30,6 @@ const keyAddresses = Object.entries(_.groupBy(data, address => `${address.city}
   name, addresses
 }))
 
-/*
-const [viewData, setViewData] = useState(keyAddresses)
-
-console.log(viewData)
-console.log(keyAddresses)
-
-useEffect(() => {
-  const results = viewData.filter(a => a.addresses.filter(address => 
-    address.street.toLowerCase().includes(input.toLowerCase())
-  ));
-  setViewData(results);
-}, [input]);
- */
 
 // Search Bar
 useEffect(() => {
