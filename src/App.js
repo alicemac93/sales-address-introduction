@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
   const getData = async() => {
     try {
-        const response = await fetch("https://introduction-api.do.saleschamp.io/introduction-api/items/address")
+        const response = await fetch("") // URL to addresses
         if (response.ok) {
             const jsonResponse = await response.json();
             setData(jsonResponse.data)
